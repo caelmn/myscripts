@@ -74,9 +74,10 @@ function Aimbot.new()
 	self.runConnection = nil
 	self.currentTarget = nil
 	self.raycastEnabled = false
+	self.aimboting = false
 	
 	self.runConnection = RunService.RenderStepped:Connect(function()
-		if self.currentTarget then
+		if self.currentTarget and self.aimboting then
 			localPlr.CameraMode = Enum.CameraMode.LockFirstPerson
 			
 			local part = self.currentTarget
@@ -98,6 +99,7 @@ function Aimbot:_disconnectLoop()
 	if self.loopRunConnection then
 		self.loopRunConnection:Disconnect()
 		self.loopRunConnection = nil
+		self.aimboting = true
 	end
 end
 
@@ -134,7 +136,7 @@ function Aimbot:stop()
 	if self.loopRunConnection then
 		self.loopRunConnection:Disconnect()
 	end
-	
+	self.aimboting = false
 	localPlr.CameraMode = Enum.CameraMode.Classic
 end
 
