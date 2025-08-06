@@ -7,13 +7,12 @@ ESP_Frame.__index = ESP_Frame
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
-function getStudsAway(part)
-	local player = Players.LocalPlayer
-	local character = player.Character or player.CharacterAdded:Wait()
-	local primaryPart = character.PrimaryPart
-	if not (primaryPart and part) then return nil end
+local currentCamera = workspace.CurrentCamera
 
-	local distance = (part.Position - primaryPart.Position).Magnitude
+function getStudsAway(part)
+	if not part then return nil end
+
+	local distance = (part.Position - currentCamera.CFrame.Position).Magnitude
 	return math.floor(distance + 0.5)
 end
 
