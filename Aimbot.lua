@@ -131,10 +131,6 @@ function Aimbot:lockOnParts(parts)
 end
 
 function Aimbot:stop()
-	if self.runConnection then
-		self.runConnection:Disconnect()
-	end
-
 	if self.loopRunConnection then
 		self.loopRunConnection:Disconnect()
 	end
