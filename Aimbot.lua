@@ -61,7 +61,7 @@ local function isVisible(part)
 
 	local raycastParams = RaycastParams.new()
 	raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
-	raycastParams.FilterDescendantsInstances = { part.Parent }
+	raycastParams.FilterDescendantsInstances = { part.Parent, localCharacter }
 	raycastParams.IgnoreWater = true
 
 	local result = workspace:Raycast(origin, direction, raycastParams)
