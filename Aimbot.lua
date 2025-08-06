@@ -75,7 +75,7 @@ function Aimbot.new()
 	self.currentTarget = nil
 	self.raycastEnabled = false
 	self.aimboting = false
-	self.newTarget = Instance.new("BindableEvent", workspace)
+	self.newTargetCallback = nil
 	
 	local prevTarget = nil
 	self.runConnection = RunService.RenderStepped:Connect(function()
@@ -83,7 +83,9 @@ function Aimbot.new()
 			
 			if prevTarget ~= self.currentTarget then
 				prevTarget = self.currentTarget
-				self.newTarget:Fire(self.currentTarget)
+				if self.newTargetCallback then
+					self.newTargetCallback(self.currentTarget)
+				end
 			end
 			
 			localPlr.CameraMode = Enum.CameraMode.LockFirstPerson
