@@ -105,22 +105,22 @@ function Aimbot.new()
 	return self
 end
 
-function Aimbot:_disconnectLoop()
+function Aimbot:_onLock()
+	self.aimboting = true
 	if self.loopRunConnection then
 		self.loopRunConnection:Disconnect()
 		self.loopRunConnection = nil
-		self.aimboting = true
 	end
 end
 
 function Aimbot:lockOnPart(part)
-	self:_disconnectLoop()
+	self:_onLock()
 
 	self.currentTarget = part
 end
 
 function Aimbot:lockOnCharacters(characters)
-	self:_disconnectLoop()
+	self:_onLock()
 
 	self.loopRunConnection = RunService.Heartbeat:Connect(function()
 		local closestCharacter = getClosestCharacter(characters)
@@ -131,7 +131,7 @@ function Aimbot:lockOnCharacters(characters)
 end
 
 function Aimbot:lockOnParts(parts)
-	self:_disconnectLoop()
+	self:_onLock()
 
 
 	self.loopRunConnection = RunService.Heartbeat:Connect(function()
