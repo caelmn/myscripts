@@ -75,7 +75,7 @@ function Aimbot.new()
 	self.currentTarget = nil
 	self.raycastEnabled = false
 	self.aimboting = false
-	self.newTarget = Instance.new("BindableEvent")
+	self.newTarget = Instance.new("BindableEvent", workspace)
 	
 	local prevTarget = nil
 	self.runConnection = RunService.RenderStepped:Connect(function()
